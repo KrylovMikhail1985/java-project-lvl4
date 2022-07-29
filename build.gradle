@@ -74,5 +74,5 @@ jacocoTestReport {
 //    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 //}
 compileJava {
-    options.release = 17
+    options.release = 8
 }
