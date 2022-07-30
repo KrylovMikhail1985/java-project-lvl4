@@ -76,14 +76,14 @@ jacocoTestReport {
 //compileJava {
 //    options.release = 17
 //}
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+//task stage(dependsOn: ['build', 'clean'])
+//build.mustRunAfter clean
 
-task copyToLib(type: Copy) {
-    into "$buildDir/libs"
-    from(configurations.implementation)
-}
-stage.dependsOn(copyToLib)
+//task copyToLib(type: Copy) {
+//    into "$buildDir/libs"
+//    from(configurations.compile)
+//}
+//stage.dependsOn(copyToLib)
 
 //jar {
 //    manifest {
