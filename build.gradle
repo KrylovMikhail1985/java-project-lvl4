@@ -73,8 +73,8 @@ jacocoTestReport {
 //    toolVersion = "0.8.8"
 //    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 //}
-compileJava {
-    options.release = 17
-}
+//compileJava {
+//    options.release = 17
+//}
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
