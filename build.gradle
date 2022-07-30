@@ -76,8 +76,8 @@ jacocoTestReport {
 compileJava {
     options.release = 17
 }
-task stage(dependsOn: ['build', 'clean'])
-build.mustRunAfter clean
+task stage(dependsOn: ['clean', 'installDist'])
+installDist.mustRunAfter clean
 
 //task copyToLib(type: Copy) {
 //    into "$buildDir/libs"
@@ -86,11 +86,11 @@ build.mustRunAfter clean
 //
 //stage.dependsOn(copyToLib)
 
-//jar {
-//    manifest {
-//        attributes(
-//                'Mainclass': 'hexlet.code.App'
-//        )
-//    }
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'hexlet.code.App'
+        )
+    }
 //    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
-//}
+}
