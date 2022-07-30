@@ -86,11 +86,11 @@ build.mustRunAfter clean
 //
 //stage.dependsOn(copyToLib)
 
-jar {
-    manifest {
-        attributes(
-                'Mainclass': 'hexlet.code.App'
-        )
-    }
-    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
-}
+//jar {
+//    manifest {
+//        attributes(
+//                'Mainclass': 'hexlet.code.App'
+//        )
+//    }
+//    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
+//}
