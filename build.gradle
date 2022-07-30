@@ -73,9 +73,9 @@ jacocoTestReport {
 //    toolVersion = "0.8.8"
 //    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 //}
-//compileJava {
-//    options.release = 17
-//}
+compileJava {
+    options.release = 17
+}
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
 
@@ -83,13 +83,14 @@ build.mustRunAfter clean
 //    into "$buildDir/libs"
 //    from(configurations.compile)
 //}
+//
 //stage.dependsOn(copyToLib)
 
-//jar {
-//    manifest {
-//        attributes(
-//                'Mainclass': 'hexlet.code.App'
-//        )
-//    }
-//    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
-//}
+jar {
+    manifest {
+        attributes(
+                'Mainclass': 'hexlet.code.App'
+        )
+    }
+    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
+}
