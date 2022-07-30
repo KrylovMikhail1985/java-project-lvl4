@@ -78,3 +78,12 @@ jacocoTestReport {
 //}
 task stage(dependsOn: ['build', 'clean'])
 build.mustRunAfter clean
+
+jar {
+    manifest {
+        attributes(
+                'Mainclass': 'hexlet.code.App'
+        )
+    }
+    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
+}
