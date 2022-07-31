@@ -11,7 +11,9 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'jacoco'
+    id 'java-library'
 }
+
 group = 'hexlet.code'
 version = '1.0-SNAPSHOT'
 
@@ -20,15 +22,26 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    implementation
+    //adding a configuration:
+
+    // declare a configuration that is going to resolve the compile classpath of the application
+    compileClasspath.extendsFrom(myDependency)
+
+//    // declare a configuration that is going to resolve the runtime classpath of the application
+//    runtimeClasspath.extendsFrom(myDependency)
+}
+
 dependencies {
     // Use JUnit Jupiter for testing.
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
+    implementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
-
-    implementation group: 'io.javalin', name: 'javalin', version: '4.6.4'
-    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
+//    implementation group: 'io.javalin', name: 'javalin', version: '4.6.4'
+    myDependency group: 'io.javalin', name: 'javalin', version: '4.6.4'
+    myDependency group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
 }
 
 application {
@@ -69,10 +82,7 @@ jacocoTestReport {
         html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
-//jacoco {
-//    toolVersion = "0.8.8"
-//    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
-//}
+
 compileJava {
     options.release = 17
 }
@@ -81,7 +91,7 @@ installDist.mustRunAfter clean
 
 //task copyToLib(type: Copy) {
 //    into "$buildDir/libs"
-//    from(configurations.compile)
+//    from(configurations.myDependency)
 //}
 //
 //stage.dependsOn(copyToLib)
@@ -89,8 +99,10 @@ installDist.mustRunAfter clean
 jar {
     manifest {
         attributes(
-                'Main-Class': 'hexlet.code.App'
+                "Main-Class": "hexlet.code.App"
         )
     }
-//    from { (configurations.runtime).collect { it.isDirectory() ? it : zopTree(it) } }
+    from { configurations.myDependency.collect { it.isDirectory() ? it : zipTree(it) } }
+    duplicatesStrategy = 'include'
 }
+

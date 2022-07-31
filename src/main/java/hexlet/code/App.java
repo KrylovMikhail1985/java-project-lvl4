@@ -1,8 +1,9 @@
 package hexlet.code;
 
+
 import io.javalin.Javalin;
 
-public final class App {
+public class App {
 //    static Javalin app;
     public static void main(String[] args) {
         Javalin app = getApp();
@@ -17,11 +18,8 @@ public final class App {
         return app;
     }
     private static int getPort() {
-        String port = System.getenv("PORT");
-        if (port != null) {
-            return Integer.valueOf(port);
-        }
-        return 8091;
+        String port = System.getenv().getOrDefault("PORT", "8091");
+        return Integer.valueOf(port);
     }
 }
 
