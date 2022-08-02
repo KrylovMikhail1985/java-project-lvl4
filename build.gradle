@@ -11,7 +11,7 @@ plugins {
     id 'application'
     id 'checkstyle'
     id 'jacoco'
-    id 'java-library'
+    id 'java'
 }
 
 group = 'hexlet.code'
@@ -22,16 +22,16 @@ repositories {
     mavenCentral()
 }
 
-configurations {
-    implementation
-    //adding a configuration:
-
-    // declare a configuration that is going to resolve the compile classpath of the application
-    compileClasspath.extendsFrom(myDependency)
-
-//    // declare a configuration that is going to resolve the runtime classpath of the application
-//    runtimeClasspath.extendsFrom(myDependency)
-}
+//configurations {
+//    implementation
+//    //adding a configuration:
+////
+////    // declare a configuration that is going to resolve the compile classpath of the application
+////    compileClasspath.extendsFrom(myDependency)
+////
+//////    // declare a configuration that is going to resolve the runtime classpath of the application
+//////    runtimeClasspath.extendsFrom(myDependency)
+//}
 
 dependencies {
     // Use JUnit Jupiter for testing.
@@ -39,9 +39,10 @@ dependencies {
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:30.1.1-jre'
-//    implementation group: 'io.javalin', name: 'javalin', version: '4.6.4'
-    myDependency group: 'io.javalin', name: 'javalin', version: '4.6.4'
-    myDependency group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
+    implementation group: 'io.javalin', name: 'javalin', version: '4.6.4'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
+
+// add a project dependency to the "someConfiguration" configuration
 }
 
 application {
@@ -89,20 +90,14 @@ compileJava {
 task stage(dependsOn: ['clean', 'installDist'])
 installDist.mustRunAfter clean
 
-//task copyToLib(type: Copy) {
-//    into "$buildDir/libs"
-//    from(configurations.myDependency)
-//}
-//
-//stage.dependsOn(copyToLib)
-
 jar {
     manifest {
         attributes(
                 "Main-Class": "hexlet.code.App"
         )
     }
-    from { configurations.myDependency.collect { it.isDirectory() ? it : zipTree(it) } }
+    configurations.implementation.setCanBeResolved(true)
+    from { (configurations.implementation).collect { it.isDirectory() ? it : zipTree(it) } }
     duplicatesStrategy = 'include'
 }
 
