@@ -4,8 +4,8 @@ package hexlet.code;
 import io.javalin.Javalin;
 
 public class App {
-//    static Javalin app;
     public static void main(String[] args) {
+//        System.out.println("Working!!!");
         Javalin app = getApp();
         app.start(getPort());
     }

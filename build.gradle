@@ -12,6 +12,8 @@ plugins {
     id 'checkstyle'
     id 'jacoco'
     id 'java'
+    id 'idea'
+    id 'io.ebean' version '13.6.5'
 }
 
 group = 'hexlet.code'
@@ -22,17 +24,6 @@ repositories {
     mavenCentral()
 }
 
-//configurations {
-//    implementation
-//    //adding a configuration:
-////
-////    // declare a configuration that is going to resolve the compile classpath of the application
-////    compileClasspath.extendsFrom(myDependency)
-////
-//////    // declare a configuration that is going to resolve the runtime classpath of the application
-//////    runtimeClasspath.extendsFrom(myDependency)
-//}
-
 dependencies {
     // Use JUnit Jupiter for testing.
     implementation 'org.junit.jupiter:junit-jupiter:5.7.2'
@@ -42,7 +33,20 @@ dependencies {
     implementation group: 'io.javalin', name: 'javalin', version: '4.6.4'
     implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.31'
 
-// add a project dependency to the "someConfiguration" configuration
+// add the Ebean dependencies
+    implementation 'io.ebean:ebean:13.6.5'
+    implementation 'io.ebean:ebean-querybean'
+    // query bean generation
+    annotationProcessor 'io.ebean:querybean-generator:13.6.5'
+    implementation 'io.ebean:ebean-ddl-generator:13.6.5'
+    implementation 'io.ebean:ebean-migration:13.0.0'
+    implementation 'io.ebean:ebean-annotation:8.1'
+    testImplementation 'io.ebean:ebean-test:13.6.5'
+
+// NOTE: ebean-ddl-generator требует старые зависимости, которых нет в java 9 и выше
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.5'
+    implementation 'javax.activation:activation:1.1.1'
+
 }
 
 application {
@@ -87,17 +91,32 @@ jacocoTestReport {
 compileJava {
     options.release = 17
 }
+
 task stage(dependsOn: ['clean', 'installDist'])
 installDist.mustRunAfter clean
+
+//task copyToLib(type: Copy) {
+//    into "$buildDir/libs"
+//    from(configurations.compileClasspath)
+//}
+//
+//stage.dependsOn(copyToLib)
 
 jar {
     manifest {
         attributes(
-                "Main-Class": "hexlet.code.App"
+//                'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' '),
+                'Main-Class': 'hexlet.code.App'
         )
     }
+
     configurations.implementation.setCanBeResolved(true)
-    from { (configurations.implementation).collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.implementation.collect { it.isDirectory() ? it : zipTree(it) } }
     duplicatesStrategy = 'include'
+}
+
+task generateMigrations(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'hexlet.code.MigrationGenerator'
 }
 
