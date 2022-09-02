@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Указанные URLs</title>
+    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/style.css}" />
+</head>
+<body>
+<section class="site">
+    <nav>
+        <a href="/">главная</a>
+        <a style="color: white" href="/se">список URL</a>
+    </nav>
+    <div>
+        <h4>Сайты</h4>
+        <table class="site">
+            <thead>
+                <th style="width: 3vw">id</th>
+                <th style="width: 50vw">наименование сайта</th>
+                <th style="width: 15vw">последняя проверка</th>
+                <th style="width: 8vw">код ответа</th>
+            </thead>
+            <tr>
+                <td>8</td>
+                <td>http://yandex.ru</td>
+                <td>23.15.1968</td>
+                <td>200</td>
+            </tr>
+        </table>
+    </div>
+</section>
+</body>
+</html>
