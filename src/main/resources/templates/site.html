@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Указанные URLs</title>
-    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/css/style.css}" />
 </head>
 <body>
 <section class="site">
     <nav>
         <a href="/">главная</a>
-        <a style="color: white" href="/se">список URL</a>
+        <a style="color: white" href="/urls/">список URL</a>
     </nav>
     <div>
         <h4>Сайты</h4>
@@ -21,9 +21,9 @@
                 <th style="width: 8vw">код ответа</th>
             </thead>
             <tr>
-                <td>8</td>
-                <td>http://yandex.ru</td>
-                <td>23.15.1968</td>
+                <td th:text="${id}">8</td>
+                <td th:text="${url}">http://yandex.ru</td>
+                <td th:text="${created}">23.15.1968</td>
                 <td>200</td>
             </tr>
         </table>

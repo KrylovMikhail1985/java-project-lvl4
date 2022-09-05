@@ -3,7 +3,7 @@ package hexlet.code;
 
 import hexlet.code.controllers.Controller;
 import hexlet.code.controllers.RootController;
-import hexlet.code.controllers.SiteController;
+import hexlet.code.controllers.URLsController;
 import io.javalin.Javalin;
 import io.javalin.plugin.rendering.template.JavalinThymeleaf;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
@@ -11,6 +11,10 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.extras.java8time.dialect.Java8TimeDialect;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+
+import static io.javalin.apibuilder.ApiBuilder.path;
+import static io.javalin.apibuilder.ApiBuilder.post;
+import static io.javalin.apibuilder.ApiBuilder.get;
 
 public class App {
     public static void main(String[] args) {
@@ -21,22 +25,35 @@ public class App {
 
         Javalin app = Javalin.create(config -> {
             config.enableDevLogging(); // enable extensive development logging for http and websocket
-//            config.enableWebjars();
+            config.enableWebjars();
+            JavalinThymeleaf.configure(getTemplateEngine());
         });
         addRoutes(app);
-        app.before(ctx -> {
-            ctx.attribute("ctx", ctx);
-        });
-        JavalinThymeleaf.configure(getTemplateEngine());
+//        app.before(ctx -> {
+//            ctx.attribute("ctx", ctx);
+//        });
         return app;
     }
     private static int getPort() {
-        String port = System.getenv().getOrDefault("PORT", "8091");
+        String port = System.getenv().getOrDefault("PORT", "8092");
         return Integer.valueOf(port);
     }
     private static void addRoutes(Javalin app) {
         app.get("/", RootController.firstPage);
-        app.get("/site/", SiteController.site);
+        app.routes(() -> {
+            path("urls", () -> {
+                get(URLsController.site);
+                post(URLsController.addUrl);
+//                path("{id}", () -> {
+//                    get(UserController::getUser);
+//                    patch(UserController::updateUser);
+//                    delete(UserController::deleteUser);
+//                });
+//                ws("events", UserController::webSocketEvents);
+            });
+        });
+
+        app.get("/site/", URLsController.site);
         app.get("/se/", Controller.test);
         app.get("/123/", ctx -> ctx.result("I can do it!!!"));
     }

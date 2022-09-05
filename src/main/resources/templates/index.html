@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Анализатор страниц: ввод URL</title>
-    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/templates/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/style.css}" />
 </head>
 <body>
 <section>
     <nav>
         <a style="color: white" href="/">главная</a>
-        <a href="/site">список URL</a>
+        <a href="/urls/">список URL</a>
     </nav>
     <div>
         <h1>Анализатор страниц!</h1>
         <p>Укажите URL для проверки</p>
-        <form action="/urls" method="post" >
+        <form action="/urls/" method="post" >
             <label class="sr-only" >Проверяемый URL</label>
-            <input placeholder="пример: https:/yandex.ru" type="text" />
+            <input name="url" placeholder="пример: https:/yandex.ru" type="text" />
             <button type="submit">Применить</button>
         </form>
     </div>

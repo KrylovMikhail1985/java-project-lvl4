@@ -1,4 +1,4 @@
-package hexlet.code.models;
+package hexlet.code.domain;
 
 import io.ebean.Model;
 import io.ebean.annotation.NotNull;
@@ -19,7 +19,21 @@ public class Url extends Model {
     @WhenCreated
     Instant createdAt;
 
+    public Url() {
+    }
     public Url(String name) {
         this.name = name;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 }

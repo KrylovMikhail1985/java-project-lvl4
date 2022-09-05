@@ -35,13 +35,22 @@ dependencies {
 
 // add the Ebean dependencies
     implementation 'io.ebean:ebean:13.6.5'
-    implementation 'io.ebean:ebean-querybean'
+    implementation 'io.ebean:ebean-querybean:13.8.1'
     // query bean generation
+//    annotationProcessor 'io.ebean:querybean-generator:12.15.1'
     annotationProcessor 'io.ebean:querybean-generator:13.6.5'
     implementation 'io.ebean:ebean-ddl-generator:13.6.5'
     implementation 'io.ebean:ebean-migration:13.0.0'
     implementation 'io.ebean:ebean-annotation:8.1'
     testImplementation 'io.ebean:ebean-test:13.6.5'
+
+    // for H2 DB
+    implementation 'com.h2database:h2:2.1.214'
+    implementation group: 'commons-collections', name: 'commons-collections', version: '3.2'
+    testImplementation group: 'junit', name: 'junit', version: '4.+'
+
+    // for postgres DB
+//    implementation 'org.postgresql:postgresql:42.3.3'
 
 // NOTE: ebean-ddl-generator требует старые зависимости, которых нет в java 9 и выше
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.5'
