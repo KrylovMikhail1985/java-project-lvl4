@@ -10,6 +10,7 @@ datasource:
   default: ${DB}
 
   production:
+    platform: postgres
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
     url: ${URL}
