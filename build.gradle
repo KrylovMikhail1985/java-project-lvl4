@@ -50,7 +50,7 @@ dependencies {
     testImplementation group: 'junit', name: 'junit', version: '4.+'
 
     // for postgres DB
-//    implementation 'org.postgresql:postgresql:42.3.3'
+    implementation 'org.postgresql:postgresql:42.3.3'
 
 // NOTE: ebean-ddl-generator требует старые зависимости, которых нет в java 9 и выше
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.5'
