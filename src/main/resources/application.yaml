@@ -1,6 +1,10 @@
 ebean:
-  migration:
-    run: true       # run database migrations on startup
+#  ddl:
+#    run: true
+#    generate: true
+  dbSchema: ${DB}
+#  migration:
+#    run: true       # run database migrations on startup
 
 datasource:
   default: ${DB}
@@ -12,6 +16,6 @@ datasource:
   development:
     username: sa
     password: sa
-    url: jdbc:h2:mem:testdb
-#    url: jdbc:h2:tcp://localhost/~/myTemp/DB
-
+#    url: jdbc:h2:mem:testdb
+#    url: jdbc:h2:tcp://localhost/~/myTemp/DB/test
+    url: jdbc:h2:~/myTemp/DB/test

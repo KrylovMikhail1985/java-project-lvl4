@@ -25,15 +25,15 @@ public class Url extends Model {
         this.name = name;
     }
 
-    public long getId() {
+    final long getId() {
         return id;
     }
 
-    public String getName() {
+    final String getName() {
         return name;
     }
 
-    public Date getCreatedAt() {
+    final Date getCreatedAt() {
         return createdAt;
     }
 }
