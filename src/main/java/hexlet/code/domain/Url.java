@@ -6,7 +6,7 @@ import io.ebean.annotation.WhenCreated;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.time.Instant;
+import java.util.Date;
 
 @Entity
 // point to name of the table. Default name is the class's name
@@ -17,7 +17,7 @@ public class Url extends Model {
     @NotNull
     String name;
     @WhenCreated
-    Instant createdAt;
+    Date createdAt;
 
     public Url() {
     }
@@ -33,7 +33,7 @@ public class Url extends Model {
         return name;
     }
 
-    public Instant getCreatedAt() {
+    public Date getCreatedAt() {
         return createdAt;
     }
 }

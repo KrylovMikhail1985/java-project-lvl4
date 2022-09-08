@@ -3,7 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>Указанные URLs</title>
-    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/css/style.css}" />
+<!--    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/static/style.css}" />-->
+    <style>
+        html {
+        font-size: 4vh;
+        margin: 0;
+        padding: 0;
+        }
+        body {
+        margin: 0;
+        padding: 0;
+        }
+
+        section {
+        height: 40vh;
+        background-color: grey;
+        }
+
+        nav {
+        color: white;
+        margin: 0;
+        padding: 1vh 1vw;
+        font-size: 0.6rem;
+        text-decoration: none;
+        }
+        a {
+        color: #291e18;
+        text-decoration: none;
+        }
+        a:hover {
+        text-decoration: underline;
+        }
+
+        div {
+        padding-left: 20vw;
+        }
+        .site div {
+        padding-left: 10vw;
+        }
+        div > p {
+        margin: 0;
+        padding: 0;
+        font-size: 0.5rem;
+        }
+
+        input {
+        width: 50vw;
+        height: 5vh;
+        border: solid 1px blue;
+        }
+        button {
+        background-color: blue;
+        color: white;
+        border: none;
+        width: 8vw;
+        height: 5vh;
+        font-size: 0.5rem;
+        }
+
+        .sr-only {
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          padding: 0;
+          overflow: hidden;
+          white-space: nowrap;
+          border: 0;
+        }
+        .site {
+        background-color: white;
+        }
+        .site > nav {
+        background-color: grey;
+        }
+
+        .site thead th, .site tr td  {
+        border: solid 1px;
+        }
+        table {
+        font-size: 0.5rem;
+        border-collapse: collapse;
+        }
+        tr {
+        white-space: nowrap;
+        }
+        .center {
+        text-align: center;
+        }
+        .left {
+        padding-left: 0.5rem;
+        }
+    </style>
 </head>
 <body>
 <section class="site">
@@ -20,11 +110,11 @@
                 <th style="width: 15vw">последняя проверка</th>
                 <th style="width: 8vw">код ответа</th>
             </thead>
-            <tr>
-                <td th:text="${id}">8</td>
-                <td th:text="${url}">http://yandex.ru</td>
-                <td th:text="${created}">23.15.1968</td>
-                <td>200</td>
+            <tr th:each="Url : ${ListOfUsers}">
+                <td class="center" th:text="${Url.id}">8</td>
+                <td class="left" th:text="${Url.name}">http://yandex.ru</td>
+                <td class="center" th:text="${#dates.format(Url.createdAt, 'dd MMM yyyy')}">23.15.1968</td>
+                <td class="center">---</td>
             </tr>
         </table>
     </div>

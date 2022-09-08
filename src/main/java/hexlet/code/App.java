@@ -26,6 +26,15 @@ public class App {
         Javalin app = Javalin.create(config -> {
             config.enableDevLogging(); // enable extensive development logging for http and websocket
             config.enableWebjars();
+//            config.addStaticFiles(staticFiles -> {
+//                staticFiles.hostedPath = "/style.css";
+//                staticFiles.directory = "/style.css";
+//                staticFiles.location = Location.CLASSPATH;
+//                staticFiles.precompress = false;
+//                staticFiles.aliasCheck = null;
+////                staticFiles.headers = Map.of(...);
+//                staticFiles.skipFileFunction = req -> false;
+//            });
             JavalinThymeleaf.configure(getTemplateEngine());
         });
         addRoutes(app);

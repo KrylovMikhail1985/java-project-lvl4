@@ -1,17 +1,17 @@
 ebean:
-  dbSchema: db  # use this schema rather than public
-#  migration:
-#    run: true       # run database migrations on startup
+  migration:
+    run: true       # run database migrations on startup
 
 datasource:
-  db:
+  default: ${DB}
+  production:
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    url: ${DATABASE_URL}
+
+  development:
     username: sa
     password: sa
-#    url: jdbc:h2:mem:myapp
-    url: jdbc:h2:tcp://localhost/~/test
-#    url: jdbc:h2:tcp://localhost/~/test
+    url: jdbc:h2:mem:testdb
+#    url: jdbc:h2:tcp://localhost/~/myTemp/DB
 
-  otherDBPostgresSQL:
-    username: other_username
-    password: ${otherPassword}
-    url: jdbc:postgresql://${otherDatabaseHost}:5432/other_dbname
