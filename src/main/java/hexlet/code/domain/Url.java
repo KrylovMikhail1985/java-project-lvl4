@@ -25,15 +25,27 @@ public class Url extends Model {
         this.name = name;
     }
 
-    final long getId() {
+    public final long getId() {
         return id;
     }
 
-    final String getName() {
+    public final String getName() {
         return name;
     }
 
-    final Date getCreatedAt() {
+    public final Date getCreatedAt() {
         return createdAt;
+    }
+
+    public final void setId(long id) {
+        this.id = id;
+    }
+
+    public final void setName(String name) {
+        this.name = name;
+    }
+
+    public final void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }
