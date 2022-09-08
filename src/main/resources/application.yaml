@@ -12,7 +12,7 @@ datasource:
   production:
     username: ${JDBC_DATABASE_USERNAME}
     password: ${JDBC_DATABASE_PASSWORD}
-    url: ${DATABASE_URL}
+    url: jdbc:${DATABASE_URL}
 
   development:
     username: sa
