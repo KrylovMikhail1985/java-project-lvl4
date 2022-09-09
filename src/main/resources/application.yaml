@@ -3,8 +3,8 @@ ebean:
 #    run: true
 #    generate: true
   dbSchema: ${DB}
-  migration:
-    run: true       # run database migrations on startup
+#  migration:
+#    run: true       # run database migrations on startup
 
 datasource:
   default: ${DB}
