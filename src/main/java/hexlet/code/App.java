@@ -24,7 +24,9 @@ public class App {
     public static Javalin getApp() {
 
         Javalin app = Javalin.create(config -> {
-            config.enableDevLogging(); // enable extensive development logging for http and websocket
+            if (!isProduction()) {
+                config.enableDevLogging(); // enable extensive development logging for http and websocket
+            }
             config.enableWebjars();
 //            config.addStaticFiles(staticFiles -> {
 //                staticFiles.hostedPath = "/style.css";
@@ -82,6 +84,13 @@ public class App {
         templateEngine.addDialect(new Java8TimeDialect());
 
         return templateEngine;
+    }
+    private static String getMode() {
+        return System.getenv().getOrDefault("APP_ENV", "development");
+    }
+
+    private static boolean isProduction() {
+        return getMode().equals("production");
     }
 }
 

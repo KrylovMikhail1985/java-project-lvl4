@@ -11,8 +11,10 @@ public final class MigrationGenerator {
         // Указываем платформу, в нашем случае H2
         dbMigration.addPlatform(Platform.H2, "h2");
         dbMigration.addPlatform(Platform.POSTGRES, "postgres");
+//        dbMigration.setPlatform(Platform.H2);
+        dbMigration.setPlatform(Platform.POSTGRES);
         // Генерируем миграцию
         dbMigration.generateMigration();
     }
 }
-// By default, the generated migrations go into src/main/resources/dbmigration
+
