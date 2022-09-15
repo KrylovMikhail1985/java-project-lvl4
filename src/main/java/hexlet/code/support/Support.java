@@ -30,14 +30,14 @@ public class Support {
         return result;
     }
 
-    public static LinkedList<String> getAlert(String urlStr) {
+    public static LinkedList<String> getAlert(String urlStr, String firstUrl) {
         LinkedList<String> list = new LinkedList<>();
         if (urlStr.equals("notValidFormat")) {
             list.add("alert alert-danger alert-dismissible fade show");
-            list.add("Некорректный URL");
+            list.add("Некорректный URL: " + firstUrl);
         } else if (urlStr.equals("alreadyExist")) {
             list.add("alert alert-warning alert-dismissible fade show");
-            list.add("Страница уже существует");
+            list.add("Страница уже существует: " + firstUrl);
 
         } else {
             list.add("alert alert-success alert-dismissible fade show");

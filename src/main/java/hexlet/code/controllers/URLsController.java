@@ -26,7 +26,7 @@ public class URLsController {
     public static Handler addUrl = ctx -> {
         String name = ctx.formParam("url");
         String urlStr = Support.urlValidator(name);
-        LinkedList<String> thInfo = Support.getAlert(urlStr);
+        LinkedList<String> thInfo = Support.getAlert(urlStr, name);
         if (!urlStr.equals("notValidFormat") && !urlStr.equals("alreadyExist")) {
             Url url = new Url(urlStr);
             url.save();
