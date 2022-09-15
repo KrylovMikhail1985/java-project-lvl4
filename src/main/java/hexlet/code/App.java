@@ -2,6 +2,7 @@ package hexlet.code;
 
 
 import hexlet.code.controllers.Controller;
+import hexlet.code.controllers.OneUrlController;
 import hexlet.code.controllers.RootController;
 import hexlet.code.controllers.URLsController;
 import io.javalin.Javalin;
@@ -55,11 +56,11 @@ public class App {
             path("urls", () -> {
                 get(URLsController.site);
                 post(URLsController.addUrl);
-//                path("{id}", () -> {
-//                    get(UserController::getUser);
+                path("{id}", () -> {
+                    get(OneUrlController.oneSite);
 //                    patch(UserController::updateUser);
 //                    delete(UserController::deleteUser);
-//                });
+                });
 //                ws("events", UserController::webSocketEvents);
             });
         });

@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <title>Указанные URLs</title>
 <!--    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/static/style.css}" />-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
         html {
-        font-size: 2vw;
+        font-size: 4vh;
         margin: 0;
         padding: 0;
         }
@@ -23,12 +21,11 @@
         }
 
         nav {
-            background-color: grey;
-            color: white;
-            margin: 0;
-            padding: 1vh 1vw;
-            font-size: 0.6rem;
-            text-decoration: none;
+        color: white;
+        margin: 0;
+        padding: 1vh 1vw;
+        font-size: 0.6rem;
+        text-decoration: none;
         }
         a {
         color: #291e18;
@@ -39,10 +36,10 @@
         }
 
         div {
-        padding-left: 20vw;
+        padding-left: 10vw;
         }
         .site div {
-        padding-left: 10vw;
+        padding-left: 4vw;
         }
         div > p {
         margin: 0;
@@ -99,29 +96,46 @@
     </style>
 </head>
 <body>
+<section class="site">
     <nav>
         <a href="/">главная</a>
         <a style="color: white" href="/urls/">список URL</a>
     </nav>
-<section class="site">
     <div>
-        <h4>Сайты</h4>
+        <h4 th:text="${Url.name}">Сайт https://example.ru</h4>
         <table class="site">
-            <thead class="center">
-                <th style="width: 3vw">id</th>
-                <th style="width: 50vw">наименование сайта</th>
-                <th style="width: 15vw">последняя проверка</th>
+            <tr>
+                <td class="left" style="width: 45vw">ID</td>
+                <td class="left" style="width: 45vw" th:text="${Url.id}">2</td>
+            </tr>
+            <tr>
+                <td class="left">Имя</td>
+                <td class="left" th:text="${Url.name}">https://example.ru</td>
+            </tr>
+            <tr>
+                <td class="left">Дата добавления</td>
+                <td class="left" th:text="${#dates.format(Url.createdAt, 'dd MMM yyyy HH:mm')}">10.02.2000 23:54</td>
+            </tr>
+        </table>
+
+        <h4>Проверки</h4>
+        <table class="site">
+            <thead>
+                <th style="width: 4vw">id</th>
                 <th style="width: 8vw">код ответа</th>
+                <th style="width: 18vw">title</th>
+                <th style="width: 18vw">h1</th>
+                <th style="width: 25vw">description</th>
+                <th style="width: 18vw">дата проверки</th>
             </thead>
-            <tr th:each="Url : ${ListOfUrls}">
-                <td class="center" th:text="${Url.id}">8</td>
-                <td class="left">
-                    <a href="/urls/2" th:text="${Url.name}" th:href="@{/urls/{urlId}/(urlId=${Url.id})}">
-                        https://example.ru
-                    </a>
-                </td>
-                <td class="center" th:text="${#dates.format(Url.createdAt, 'dd MMM yyyy HH:mm')}">23.15.1968</td>
-                <td class="center">---</td>
+<!--            <tr th:each="Url : ${ListOfUsers}">-->
+            <tr>
+                <td class="center">4</td>
+                <td class="center">888</td>
+                <td class="center">titles text</td>
+                <td class="center">something</td>
+                <td class="center">descriptions text</td>
+                <td class="center">01.08.2020</td>
             </tr>
         </table>
     </div>

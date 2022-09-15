@@ -18,6 +18,6 @@ datasource:
   development:
     username: sa
     password: sa
-#    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:testdb
 #    url: jdbc:h2:tcp://localhost/~/myTemp/DB/test
-    url: jdbc:h2:~/myTemp/DB/tes6
+#    url: jdbc:h2:~/myTemp/DB/tes6
