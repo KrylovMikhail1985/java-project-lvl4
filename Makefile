@@ -8,6 +8,6 @@ test:
 	./gradlew test
 check:
 	./gradlew checkstyleMain
-	#./gradlew checkstyleTest
+	./gradlew checkstyleTest
 
 .PHONY: build
