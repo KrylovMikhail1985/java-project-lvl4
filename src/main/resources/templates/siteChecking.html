@@ -121,6 +121,9 @@
         </table>
 
         <h4>Проверки</h4>
+        <form method="post" action="#" th:action="@{/urls/{urlId}/checks/(urlId=${Url.id})}">
+            <button type="submit">Запустить проверку</button>
+        </form>
         <table class="site">
             <thead>
                 <th style="width: 4vw">id</th>
@@ -131,13 +134,13 @@
                 <th style="width: 18vw">дата проверки</th>
             </thead>
 <!--            <tr th:each="Url : ${ListOfUsers}">-->
-            <tr>
-                <td class="center">4</td>
+            <tr th:each="UrlCheck : ${ListOfUrlChecks}">
+                <td class="center" th:text="${UrlCheck.id}">4</td>
                 <td class="center">888</td>
-                <td class="center">titles text</td>
-                <td class="center">something</td>
-                <td class="center">descriptions text</td>
-                <td class="center">01.08.2020</td>
+                <td class="center" th:text="${UrlCheck.title}">titles text</td>
+                <td class="center" th:text="${UrlCheck.h1}">something</td>
+                <td class="center" th:text="${UrlCheck.description}">descriptions text</td>
+                <td class="center" th:text="${#dates.format(UrlCheck.createdAt, 'dd MMM yyyy HH:mm')}"> 01.08.2020</td>
             </tr>
         </table>
     </div>

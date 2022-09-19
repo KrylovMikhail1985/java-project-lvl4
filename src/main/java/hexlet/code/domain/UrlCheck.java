@@ -3,41 +3,41 @@ package hexlet.code.domain;
 import io.ebean.Model;
 import io.ebean.annotation.WhenCreated;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 
 @Entity(name = "checked_sites")
-public class SiteCheck extends Model {
+public class UrlCheck extends Model {
     @Id
     long id;
-    @Column(name = "url_id")
-    long urlId;
+    int statusCode;
     String title;
     String h1;
+    @Lob
     String description;
+    @ManyToOne(optional = false)
+    Url url;
     @WhenCreated
-    Date checkingDate;
+    Date createdAt;
 
-    public SiteCheck() {
+    public UrlCheck() {
     }
 
     public final long getId() {
         return id;
     }
 
-    public final void setId(long id) {
-        this.id = id;
+    public final int getStatusCode() {
+        return statusCode;
     }
 
-    public final long getSiteId() {
-        return urlId;
-    }
-
-    public final void setSiteId(long urlId) {
-        this.urlId = urlId;
+    public final void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public final String getTitle() {
@@ -64,11 +64,16 @@ public class SiteCheck extends Model {
         this.description = description;
     }
 
-    public final Date getCheckingDate() {
-        return checkingDate;
+    public final Url getUrl() {
+        return url;
     }
 
-    public final void setCheckingDate(Date checkingDate) {
-        this.checkingDate = checkingDate;
+    public final void setUrl(Url url) {
+        this.url = url;
     }
+
+    public final Date getCreatedAt() {
+        return createdAt;
+    }
+
 }

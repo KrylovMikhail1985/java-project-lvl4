@@ -1,7 +1,5 @@
 package hexlet.code;
 
-
-import hexlet.code.controllers.Controller;
 import hexlet.code.controllers.OneUrlController;
 import hexlet.code.controllers.RootController;
 import hexlet.code.controllers.URLsController;
@@ -55,19 +53,14 @@ public class App {
         app.routes(() -> {
             path("urls", () -> {
                 get(URLsController.site);
-                post(URLsController.addUrl);
+                post(RootController.addUrl);
                 path("{id}", () -> {
                     get(OneUrlController.oneSite);
-//                    patch(UserController::updateUser);
 //                    delete(UserController::deleteUser);
                 });
-//                ws("events", UserController::webSocketEvents);
             });
         });
-
-        app.get("/site/", URLsController.site);
-        app.get("/se/", Controller.test);
-        app.get("/123/", ctx -> ctx.result("I can do it!!!"));
+        app.post("/urls/{id}/checks", OneUrlController.checkUrl);
     }
     private static TemplateEngine getTemplateEngine() {
         TemplateEngine templateEngine = new TemplateEngine();
