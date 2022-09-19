@@ -48,4 +48,14 @@ public class Url extends Model {
     public final void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public final String toString() {
+        return "Url{"
+                + "id=" + id
+                + ", name='" + name
+                + '\''
+                + ", createdAt=" + createdAt
+                + '}';
+    }
 }
