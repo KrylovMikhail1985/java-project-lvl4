@@ -108,20 +108,20 @@
         <table class="site">
             <tr>
                 <td class="left" style="width: 45vw">ID</td>
-                <td class="left" style="width: 45vw" th:text="${Url.id}">2</td>
+                <td class="left" style="width: 45vw" th:text="${Url.getId()}">2</td>
             </tr>
             <tr>
                 <td class="left">Имя</td>
-                <td class="left" th:text="${Url.name}">https://example.ru</td>
+                <td class="left" th:text="${Url.getName()}">https://example.ru</td>
             </tr>
             <tr>
                 <td class="left">Дата добавления</td>
-                <td class="left" th:text="${#dates.format(Url.createdAt, 'dd MMM yyyy HH:mm')}">10.02.2000 23:54</td>
+                <td class="left" th:text="${#dates.format(Url.getCreatedAt(), 'dd MMM yyyy HH:mm')}">10.02.2000 23:54</td>
             </tr>
         </table>
 
         <h4>Проверки</h4>
-        <form method="post" action="#" th:action="@{/urls/{urlId}/checks/(urlId=${Url.id})}">
+        <form method="post" action="#" th:action="@{/urls/{urlId}/checks/(urlId=${Url.getId()})}">
             <button type="submit">Запустить проверку</button>
         </form>
         <table class="site">
@@ -135,12 +135,12 @@
             </thead>
 <!--            <tr th:each="Url : ${ListOfUsers}">-->
             <tr th:each="UrlCheck : ${ListOfUrlChecks}">
-                <td class="center" th:text="${UrlCheck.id}">4</td>
+                <td class="center" th:text="${UrlCheck.getId()}">4</td>
                 <td class="center">888</td>
-                <td class="center" th:text="${UrlCheck.title}">titles text</td>
-                <td class="center" th:text="${UrlCheck.h1}">something</td>
-                <td class="center" th:text="${UrlCheck.description}">descriptions text</td>
-                <td class="center" th:text="${#dates.format(UrlCheck.createdAt, 'dd MMM yyyy HH:mm')}"> 01.08.2020</td>
+                <td class="center" th:text="${UrlCheck.getTitle()}">titles text</td>
+                <td class="center" th:text="${UrlCheck.getH1()}">something</td>
+                <td class="center" th:text="${UrlCheck.getDescription()}">descriptions text</td>
+                <td class="center" th:text="${#dates.format(UrlCheck.getCreatedAt(), 'dd MMM yyyy HH:mm')}"> 01.08.2020</td>
             </tr>
         </table>
     </div>

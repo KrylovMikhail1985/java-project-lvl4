@@ -1,11 +1,14 @@
 package hexlet.code.support;
 
 import hexlet.code.domain.Url;
+import hexlet.code.domain.UrlCheck;
 import hexlet.code.domain.query.QUrl;
+import hexlet.code.domain.query.QUrlCheck;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Support {
 //    public String urlStr;
@@ -44,5 +47,22 @@ public class Support {
             list.add("Страница успешно добавлена");
         }
         return list;
+    }
+
+    public static List<Url> getUrlsList() {
+        return new QUrl()
+                .orderBy()
+                .findList();
+    }
+    public static List<UrlCheck> getUrlChecksListForThisUrl(Url thisUrl) {
+        return new QUrlCheck()
+                .url.equalTo(thisUrl)
+                .orderBy()
+                .findList();
+    }
+    public static Url getUrlById(Long id) {
+        return new QUrl()
+                .id.equalTo(id)
+                .findOne();
     }
 }

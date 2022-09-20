@@ -14,16 +14,16 @@ import java.util.Date;
 @Entity(name = "checked_sites")
 public class UrlCheck extends Model {
     @Id
-    long id;
-    int statusCode;
-    String title;
-    String h1;
+    private long id;
+    private int statusCode;
+    private String title;
+    private String h1;
     @Lob
-    String description;
+    private String description;
     @ManyToOne(optional = false)
-    Url url;
+    private Url url;
     @WhenCreated
-    Date createdAt;
+    private Date createdAt;
 
     public UrlCheck() {
     }

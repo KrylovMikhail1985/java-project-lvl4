@@ -18,13 +18,14 @@ import java.util.List;
 @Table(name = "urls")
 public class Url extends Model {
     @Id
-    long id;
+    private long id;
     @NotNull
-    String name;
+    private String name;
     @WhenCreated
-    Date createdAt;
+    private Date createdAt;
+
     @OneToMany(mappedBy = "url")
-    List<UrlCheck> urlChecks;
+    private List<UrlCheck> urlChecks;
 
     public Url() {
     }
@@ -63,11 +64,14 @@ public class Url extends Model {
         return createdAt;
     }
 
-    public final void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
 
-    public final void setUrlChecks(LinkedList<UrlCheck> urlChecks) {
-        this.urlChecks = urlChecks;
+    public List<UrlCheck> getUrlChecks() {
+        return urlChecks;
+    }
+    public Date getLastCheck() {
+        if (urlChecks.isEmpty()) {
+            return null;
+        }
+        return urlChecks.get(urlChecks.size() - 1).getCreatedAt();
     }
 }

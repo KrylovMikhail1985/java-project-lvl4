@@ -117,13 +117,13 @@
                 <th style="width: 8vw">код ответа</th>
             </thead>
             <tr th:each="Url : ${ListOfUrls}">
-                <td class="center" th:text="${Url.id}">8</td>
+                <td class="center" th:text="${Url.getId()}">8</td>
                 <td class="left">
-                    <a href="/urls/2" th:text="${Url.name}" th:href="@{/urls/{urlId}/(urlId=${Url.id})}">
+                    <a href="/urls/2" th:text="${Url.getName()}" th:href="@{/urls/{urlId}/(urlId=${Url.id})}">
                         https://example.ru
                     </a>
                 </td>
-                <td class="center" th:text="${#dates.format(Url.createdAt, 'dd MMM yyyy HH:mm')}">23.15.1968</td>
+                <td class="center" th:text="${#dates.format(Url.getLastCheck(), 'dd MMM yyyy HH:mm')}">23.15.1968</td>
                 <td class="center">---</td>
             </tr>
         </table>

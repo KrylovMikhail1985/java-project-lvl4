@@ -2,8 +2,7 @@ package hexlet.code.controllers;
 
 import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
-import hexlet.code.domain.query.QUrl;
-import hexlet.code.domain.query.QUrlCheck;
+import hexlet.code.support.Support;
 import io.javalin.http.Handler;
 
 import java.util.List;
@@ -11,13 +10,13 @@ import java.util.List;
 public class OneUrlController {
     public static Handler oneSite = ctx -> {
         long urlId = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
-        Url url = getUrlById(urlId);
+        Url url = Support.getUrlById(urlId);
         if (url == null) {
             ctx.redirect("/urls/");
         } else {
             ctx.attribute("Url", url);
         }
-        List<UrlCheck> urlChecks = getUrlChecksListForThisUrl(url);
+        List<UrlCheck> urlChecks = Support.getUrlChecksListForThisUrl(url);
         if (!urlChecks.isEmpty()) {
             ctx.attribute("ListOfUrlChecks", urlChecks);
         }
@@ -25,25 +24,14 @@ public class OneUrlController {
     };
     public static Handler checkUrl = ctx -> {
         long urlId = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
-        Url url = getUrlById(urlId);
+        Url url = Support.getUrlById(urlId);
         creatNewUrlCheckForUrl(url);
-        List<UrlCheck> urlChecks = getUrlChecksListForThisUrl(url);
+        List<UrlCheck> urlChecks = Support.getUrlChecksListForThisUrl(url);
 
         ctx.attribute("Url", url);
         ctx.attribute("ListOfUrlChecks", urlChecks);
         ctx.render("siteChecking.html");
     };
-    private static Url getUrlById(Long id) {
-        return new QUrl()
-                .id.equalTo(id)
-                .findOne();
-    }
-    private static List<UrlCheck> getUrlChecksListForThisUrl(Url thisUrl) {
-        return new QUrlCheck()
-                .url.equalTo(thisUrl)
-                .orderBy()
-                .findList();
-    }
     private static void creatNewUrlCheckForUrl(Url url) {
         UrlCheck urlCheck = new UrlCheck();
         urlCheck.setUrl(url);
