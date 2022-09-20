@@ -120,20 +120,19 @@
             </tr>
         </table>
 
-        <h4>Проверки</h4>
+        <h4 style="margin-top: 1rem; margin-bottom: 0.5rem">Проверки</h4>
         <form method="post" action="#" th:action="@{/urls/{urlId}/checks/(urlId=${Url.getId()})}">
-            <button type="submit">Запустить проверку</button>
+            <button type="submit" style="width: 7rem; font-size: 0.6rem; margin-bottom: 0.6rem">Запустить проверку</button>
         </form>
         <table class="site">
             <thead>
-                <th style="width: 4vw">id</th>
-                <th style="width: 8vw">код ответа</th>
-                <th style="width: 18vw">title</th>
-                <th style="width: 18vw">h1</th>
-                <th style="width: 25vw">description</th>
-                <th style="width: 18vw">дата проверки</th>
+                <th class="center" style="width: 4vw">id</th>
+                <th class="center" style="width: 8vw">код ответа</th>
+                <th class="center" style="width: 18vw">title</th>
+                <th class="center" style="width: 18vw">h1</th>
+                <th class="center" style="width: 25vw">description</th>
+                <th class="center" style="width: 18vw">дата проверки</th>
             </thead>
-<!--            <tr th:each="Url : ${ListOfUsers}">-->
             <tr th:each="UrlCheck : ${ListOfUrlChecks}">
                 <td class="center" th:text="${UrlCheck.getId()}">4</td>
                 <td class="center">888</td>

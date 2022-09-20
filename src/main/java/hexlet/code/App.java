@@ -46,7 +46,7 @@ public class App {
     }
     private static int getPort() {
         String port = System.getenv().getOrDefault("PORT", "8092");
-        return Integer.valueOf(port);
+        return Integer.parseInt(port);
     }
     private static void addRoutes(Javalin app) {
         app.get("/", RootController.firstPage);
@@ -56,7 +56,6 @@ public class App {
                 post(RootController.addUrl);
                 path("{id}", () -> {
                     get(OneUrlController.oneSite);
-//                    delete(UserController::deleteUser);
                 });
             });
         });

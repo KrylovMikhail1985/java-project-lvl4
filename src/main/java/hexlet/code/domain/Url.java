@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 //@DbName("development")
@@ -34,23 +33,23 @@ public class Url extends Model {
     }
 
 
-    @Override
-    public final String toString() {
-        return "Url{"
-                + "id=" + id
-                + ", name='" + name
-                + '\''
-                + ", createdAt=" + createdAt
-                + '}';
-    }
+//    @Override
+//    public final String toString() {
+//        return "Url{"
+//                + "id=" + id
+//                + ", name='" + name
+//                + '\''
+//                + ", createdAt=" + createdAt
+//                + '}';
+//    }
 
     public final long getId() {
         return id;
     }
 
-    public final void setId(long id) {
-        this.id = id;
-    }
+//    public final void setId(long id) {
+//        this.id = id;
+//    }
 
     public final String getName() {
         return name;
@@ -65,10 +64,10 @@ public class Url extends Model {
     }
 
 
-    public List<UrlCheck> getUrlChecks() {
-        return urlChecks;
-    }
-    public Date getLastCheck() {
+//    public final List<UrlCheck> getUrlChecks() {
+//        return urlChecks;
+//    }
+    public final Date getLastCheck() {
         if (urlChecks.isEmpty()) {
             return null;
         }

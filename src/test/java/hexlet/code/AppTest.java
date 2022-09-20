@@ -42,6 +42,13 @@ public class AppTest {
 
     @Nested
     class RootTest {
+        @Test
+        void root() {
+            HttpResponse<String> response = Unirest
+                    .get(baseUrl + "/urls")
+                    .asString();
+            assertThat(response.getStatus()).isEqualTo(200);
+        }
 
         @Test
         void addUrlSuccess() {
@@ -71,9 +78,7 @@ public class AppTest {
         }
         @Test
         void addUrlAlreadyExist() {
-            Unirest.post(baseUrl + "/urls")
-                    .field("url", "https://yandex.ru")
-                    .asString();
+            addUrl();
             HttpResponse<String> response = Unirest
                     .post(baseUrl + "/urls")
                     .field("url", "Https://yandex.ru")
@@ -86,11 +91,24 @@ public class AppTest {
     }
     @Nested
     class UrlsTest {
-
         @Test
         void testUrlsGet() {
             HttpResponse<String> response = Unirest.get(baseUrl + "/urls").asString();
             assertThat(response.getStatus()).isEqualTo(200);
+        }
+        @Test
+        void testUrlWithId() {
+            addUrl();
+            HttpResponse<String> response = Unirest.get(baseUrl + "/urls/1").asString();
+            assertThat(response.getStatus()).isEqualTo(200);
+        }
+        @Test
+        void testUrlCheck() {
+            addUrl();
+            HttpResponse<String> response = Unirest.post(baseUrl + "/urls/1/checks").asString();
+            assertThat(response.getStatus()).isEqualTo(200);
+            HttpResponse<String> response2 = Unirest.get(baseUrl + "/urls/1").asString();
+            assertThat(response2.getStatus()).isEqualTo(200);
         }
 
 //
@@ -159,5 +177,10 @@ public class AppTest {
 //            assertThat(body).contains("The Man Within");
 //            assertThat(body).doesNotContain("Consider the Lilies");
 //        }
+    }
+    private static void addUrl() {
+        Unirest.post(baseUrl + "/urls")
+                .field("url", "https://yandex.ru")
+                .asString();
     }
 }
