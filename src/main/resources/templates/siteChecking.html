@@ -130,14 +130,14 @@
                 <th class="center" style="width: 8vw">код ответа</th>
                 <th class="center" style="width: 18vw">title</th>
                 <th class="center" style="width: 18vw">h1</th>
-                <th class="center" style="width: 25vw">description</th>
-                <th class="center" style="width: 18vw">дата проверки</th>
+                <th class="center" style="width: 32vw">description</th>
+                <th class="center" style="width: 10vw">дата проверки</th>
             </thead>
             <tr th:each="UrlCheck : ${ListOfUrlChecks}">
                 <td class="center" th:text="${UrlCheck.getId()}">4</td>
-                <td class="center">888</td>
+                <td class="center" >200</td>
                 <td class="center" th:text="${UrlCheck.getTitle()}">titles text</td>
-                <td class="center" th:text="${UrlCheck.getH1()}">something</td>
+                <td class="center" th:text="${UrlCheck.getH1()}">some H1</td>
                 <td class="center" th:text="${UrlCheck.getDescription()}">descriptions text</td>
                 <td class="center" th:text="${#dates.format(UrlCheck.getCreatedAt(), 'dd MMM yyyy HH:mm')}"> 01.08.2020</td>
             </tr>

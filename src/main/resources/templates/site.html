@@ -124,7 +124,7 @@
                     </a>
                 </td>
                 <td class="center" th:text="${#dates.format(Url.getLastCheck(), 'dd MMM yyyy HH:mm')}">23.15.1968</td>
-                <td class="center">---</td>
+                <td class="center" th:text="${Url.getStatusCode()}" >234</td>
             </tr>
         </table>
     </div>

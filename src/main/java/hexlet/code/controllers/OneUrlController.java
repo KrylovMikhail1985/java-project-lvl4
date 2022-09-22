@@ -4,6 +4,10 @@ import hexlet.code.domain.Url;
 import hexlet.code.domain.UrlCheck;
 import hexlet.code.support.Support;
 import io.javalin.http.Handler;
+import kong.unirest.HttpResponse;
+import kong.unirest.Unirest;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.util.List;
 
@@ -31,9 +35,43 @@ public class OneUrlController {
     private static void creatNewUrlCheckForUrl(Url url) {
         UrlCheck urlCheck = new UrlCheck();
         urlCheck.setUrl(url);
-        urlCheck.setH1("some H1");
-        urlCheck.setTitle("some Title");
-        urlCheck.setDescription("some description");
+        Document doc;
+        try {
+            HttpResponse<String> response = Unirest
+                    .get(url.getName())
+                    .asString();
+            doc = Jsoup.parse(response.getBody());
+        } catch (Exception e) {
+            System.out.println("we cached Exception: " + e);
+            return;
+        }
+
+        String h1 = "";
+        try {
+            h1 = doc.selectFirst("h1").ownText();
+        } catch (Exception e) {
+            System.out.println("There is not H1 teg");
+        }
+        if (!h1.isEmpty() && h1.length() < 200) {
+            urlCheck.setH1(h1);
+        }
+
+        String title = "";
+        try {
+            title = doc.title();
+        } catch (Exception e) {
+            System.out.println("There is not Title");
+        }
+        urlCheck.setTitle(title);
+
+        String description = "";
+        try {
+            description = doc.selectFirst("meta[name=description]").attr("content");
+        } catch (Exception e) {
+            System.out.println("There is not description");
+        }
+        urlCheck.setDescription(description);
+
         urlCheck.save();
     }
 }
