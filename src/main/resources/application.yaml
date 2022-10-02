@@ -1,11 +1,11 @@
 ebean:
-#  ddl:
-#    run: true
-#    generate: true
-#  dbSchema: ${DB}
-  migration:
-    run: true       # run database migrations on startup
+  ddl:
+    run: true
     generate: true
+#  dbSchema: ${APP_ENV}
+#  migration:
+#    run: true       # run database migrations on startup
+#    generate: true
 
 datasource:
   default: ${APP_ENV}
