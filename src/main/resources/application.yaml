@@ -1,13 +1,14 @@
 ebean:
-  ddl:
-    run: true
-    generate: true
+#  ddl:
+#    run: true
+#    generate: true
 #  dbSchema: ${DB}
-#  migration:
-#    run: true       # run database migrations on startup
+  migration:
+    run: true       # run database migrations on startup
+    generate: true
 
 datasource:
-  default: ${DB}
+  default: ${APP_ENV}
 
   production:
     platform: postgresql
