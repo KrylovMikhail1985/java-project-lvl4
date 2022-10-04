@@ -1,5 +1,5 @@
 run-dist:
-	APP_ENV=development		./build/install/app/bin/app
+	APP_ENV=development		./app/build/install/app/bin/app
 
 clean:
 	./gradlew clean
