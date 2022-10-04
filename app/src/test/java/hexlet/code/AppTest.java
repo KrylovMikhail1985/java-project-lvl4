@@ -1,7 +1,6 @@
 package hexlet.code;
 
 import hexlet.code.domain.Url;
-import hexlet.code.domain.query.QUrl;
 import io.ebean.DB;
 import io.ebean.Database;
 import io.javalin.Javalin;
@@ -55,23 +54,22 @@ public class AppTest {
             assertThat(response.getStatus()).isEqualTo(200);
         }
 
-        @Test
-
-        void addUrlSuccess() {
-            System.out.println("addUrlSuccess");
-            HttpResponse<String> response = Unirest
-                    .post(baseUrl + "/urls")
-                    .field("url", "https://test.ru:8090/something")
-                    .asString();
-            String body = response.getBody();
-
-            assertThat(response.getStatus()).isEqualTo(200);
-            assertThat(body).contains("Страница успешно добавлена");
-            Url url = new QUrl()
-                    .name.equalTo("https://test.ru:8090")
-                    .findOne();
-            assertThat(url).isNotNull();
-        }
+//        @Test
+//        void addUrlSuccess() {
+//            System.out.println("addUrlSuccess");
+//            HttpResponse<String> response = Unirest
+//                    .post(baseUrl + "/urls")
+//                    .field("url", "https://test.ru:8090/something")
+//                    .asString();
+//            String body = response.getBody();
+//
+//            assertThat(response.getStatus()).isEqualTo(200);
+//            assertThat(body).contains("Страница успешно добавлена");
+//            Url url = new QUrl()
+//                    .name.equalTo("https://test.ru:8090")
+//                    .findOne();
+//            assertThat(url).isNotNull();
+//        }
         @Test
         void addUrlNotValidUrl() {
             System.out.println("addUrlNotValidUrl");

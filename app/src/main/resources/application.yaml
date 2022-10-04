@@ -2,7 +2,7 @@ ebean:
   ddl:
     run: true
     generate: true
-  dbSchema: ${APP_ENV}
+#  dbSchema: ${APP_ENV}
 #  migration:
 #    run: true       # run database migrations on startup
 #    generate: true
