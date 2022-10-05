@@ -45,9 +45,9 @@ public class UrlCheck extends Model {
     }
 
     public final void setTitle(String title) {
-        if (title.length() > 30) {
-            title = title.substring(0, 28).trim() + "...";
-        }
+//        if (title.length() > 30) {
+//            title = title.substring(0, 28).trim() + "...";
+//        }
         this.title = title;
     }
 
@@ -56,9 +56,9 @@ public class UrlCheck extends Model {
     }
 
     public final void setH1(String h1) {
-        if (h1.length() > 30) {
-            h1 = h1.substring(0, 28).trim() + "...";
-        }
+//        if (h1.length() > 30) {
+//            h1 = h1.substring(0, 28).trim() + "...";
+//        }
         this.h1 = h1;
     }
 
@@ -67,9 +67,9 @@ public class UrlCheck extends Model {
     }
 
     public final void setDescription(String description) {
-        if (description.length() > 45) {
-            description = description.substring(0, 42).trim() + "...";
-        }
+//        if (description.length() > 45) {
+//            description = description.substring(0, 42).trim() + "...";
+//        }
         this.description = description;
     }
 
