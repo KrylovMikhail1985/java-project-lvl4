@@ -25,14 +25,14 @@ public class OneUrlController {
     public static Handler checkUrl = ctx -> {
         long urlId = ctx.pathParamAsClass("id", Long.class).getOrDefault(null);
         Url url = Support.getUrlById(urlId);
-        creatNewUrlCheckForUrl(url);
+        createNewUrlCheckForUrl(url);
         List<UrlCheck> urlChecks = Support.getUrlChecksListForThisUrl(url);
 
         ctx.attribute("Url", url);
         ctx.attribute("ListOfUrlChecks", urlChecks);
-        ctx.render("siteChecking.html");
+        ctx.render("siteCheckingWithAlarm.html");
     };
-    private static void creatNewUrlCheckForUrl(Url url) {
+    private static void createNewUrlCheckForUrl(Url url) {
         UrlCheck urlCheck = new UrlCheck();
         urlCheck.setUrl(url);
         Document doc;
@@ -41,8 +41,9 @@ public class OneUrlController {
                     .get(url.getName())
                     .asString();
             doc = Jsoup.parse(response.getBody());
+            urlCheck.setStatusCode(response.getStatus());
         } catch (Exception e) {
-            System.out.println("we cached Exception: " + e);
+            System.out.println("We cached Exception: " + e);
             return;
         }
 

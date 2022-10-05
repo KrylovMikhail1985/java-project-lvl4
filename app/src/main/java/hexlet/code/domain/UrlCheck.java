@@ -36,9 +36,9 @@ public class UrlCheck extends Model {
         return statusCode;
     }
 
-//    public final void setStatusCode(int statusCode) {
-//        this.statusCode = statusCode;
-//    }
+    public final void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
 
     public final String getTitle() {
         return title;
