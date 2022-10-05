@@ -14,7 +14,7 @@ import java.util.List;
 //@DbName("development")
 @Entity
 // point to name of the table. Default name is the class's name
-@Table(name = "urls")
+@Table(name = "url")
 public class Url extends Model {
     @Id
     private long id;
