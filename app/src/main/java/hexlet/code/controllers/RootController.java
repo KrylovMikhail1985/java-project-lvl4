@@ -16,12 +16,14 @@ public class RootController {
         String name = ctx.formParam("url");
         String urlStr = Support.urlValidator(name);
         LinkedList<String> thInfo = Support.getAlert(urlStr, name);
-        if (!urlStr.equals("notValidFormat") && !urlStr.equals("alreadyExist")) {
+        if (urlStr.equals("notValidFormat") | urlStr.equals("alreadyExist")) {
+            ctx.attribute("class", thInfo.getFirst());
+            ctx.attribute("text", thInfo.getLast());
+            ctx.render("indexWithAlarm.html");
+        } else {
             Url url = new Url(urlStr);
             url.save();
+            ctx.redirect("/urls");
         }
-        ctx.attribute("class", thInfo.getFirst());
-        ctx.attribute("text", thInfo.getLast());
-        ctx.render("indexWithAlarm.html");
     };
 }
