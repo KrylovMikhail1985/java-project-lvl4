@@ -28,9 +28,11 @@ public class OneUrlController {
         createNewUrlCheckForUrl(url);
         List<UrlCheck> urlChecks = Support.getUrlChecksListForThisUrl(url);
 
+        ctx.attribute("urlIsChecked", true);
+
         ctx.attribute("Url", url);
         ctx.attribute("ListOfUrlChecks", urlChecks);
-        ctx.render("siteCheckingWithAlarm.html");
+        ctx.render("siteChecking.html");
     };
     private static void createNewUrlCheckForUrl(Url url) {
         UrlCheck urlCheck = new UrlCheck();

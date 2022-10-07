@@ -104,7 +104,14 @@
         <a href="/">главная</a>
         <a style="color: white" href="/urls/">список URL</a>
     </nav>
-    <p hidden>Страница успешно проверена</p>
+
+    <div style="margin: 0; padding: 0.2rem 2rem"
+         class="alert alert-success alert-dismissible fade show"
+        th:hidden="${!urlIsChecked}">
+        Страница успешно проверена.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
     <div>
         <h4 th:text="${Url.name}">Сайт https://example.ru</h4>
         <table class="site">

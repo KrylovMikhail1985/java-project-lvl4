@@ -20,7 +20,8 @@ public class RootController {
             ctx.attribute("class", thInfo.getFirst());
             ctx.attribute("text", thInfo.getLast());
             ctx.attribute("check", "urlIsCorrect");
-            ctx.render("indexWithAlarm.html");
+            ctx.attribute("showAlert", true);
+            ctx.render("index.html");
         } else {
             Url url = new Url(urlStr);
             url.save();
