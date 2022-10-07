@@ -19,10 +19,12 @@ public class RootController {
         if (urlStr.equals("notValidFormat") | urlStr.equals("alreadyExist")) {
             ctx.attribute("class", thInfo.getFirst());
             ctx.attribute("text", thInfo.getLast());
+            ctx.attribute("check", "urlIsCorrect");
             ctx.render("indexWithAlarm.html");
         } else {
             Url url = new Url(urlStr);
             url.save();
+            ctx.cookie("checking", "urlIsCorrect");
             ctx.redirect("/urls");
         }
     };
