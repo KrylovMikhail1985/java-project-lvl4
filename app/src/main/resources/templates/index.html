@@ -3,95 +3,10 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>Анализатор страниц: ввод URL</title>
-<!--    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/style.css}" />-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-        html {
-            font-size: 2vw;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            margin: 0;
-            padding: 0;
-        }
-
-        section {
-            height: 10rem;
-            background-color: grey;
-        }
-
-        nav {
-            background-color: grey;
-            color: white;
-            margin: 0;
-            padding: 1vh 1vw;
-            font-size: 0.6rem;
-            text-decoration: none;
-        }
-        a {
-        color: #291e18;
-        text-decoration: none;
-        }
-        a:hover {
-        text-decoration: underline;
-        }
-
-        div {
-        padding-left: 10vw;
-        }
-        .site div {
-        padding-left: 10vw;
-        }
-        div > p {
-        margin: 0;
-        padding: 0;
-        font-size: 0.5rem;
-        }
-
-        input {
-        width: 65vw;
-        height: 2rem;
-        border: solid 1px blue;
-        }
-        button {
-        background-color: blue;
-        color: white;
-        border: none;
-        width: 15vw;
-        height: 2rem;
-        }
-
-        .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          overflow: hidden;
-          white-space: nowrap;
-          border: 0;
-        }
-        /*.site {*/
-        /*background-color: white;*/
-        /*}*/
-        /*.site > nav {*/
-        /*background-color: grey;*/
-        /*}*/
-
-        /*.site thead th, .site tr td  {*/
-        /*border: solid 1px;*/
-        /*}*/
-        /*table {*/
-        /*font-size: 0.5rem;*/
-        /*border-collapse: collapse;*/
-        /*}*/
-        /*tr {*/
-        /*white-space: nowrap;*/
-        /*}*/
-    </style>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/style.css}"/>
 
 </head>
 <body>
@@ -99,7 +14,7 @@
         <a style="color: white" href="/">главная</a>
         <a href="/urls/">список URL</a>
     </nav>
-    <div style="margin: 0; padding: 0.2rem 2rem"
+    <div style="margin: 0; padding: 0.1rem 2rem"
          class="alert alert-success alert-dismissible fade show"
          th:class="${class}"
          th:text="${text}"

@@ -1,102 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"/>
     <title>Выбранный URL</title>
 <!--    <link rel="stylesheet" type="text/css" media="all" href="./style.css" th:href="@{/static/style.css}" />-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <style>
-        html {
-        font-size: 2vw;
-        margin: 0;
-        padding: 0;
-        }
-        body {
-        margin: 0;
-        padding: 0;
-        }
-
-        section {
-        height: 40vh;
-        background-color: grey;
-        }
-
-        nav {
-        color: white;
-        margin: 0;
-        padding: 1vh 1vw;
-        font-size: 0.6rem;
-        text-decoration: none;
-        }
-        a {
-        color: #291e18;
-        text-decoration: none;
-        }
-        a:hover {
-        text-decoration: underline;
-        }
-
-        div {
-        padding-left: 10vw;
-        }
-        .site div {
-        padding-left: 4vw;
-        }
-        div > p {
-        margin: 0;
-        padding: 0;
-        font-size: 0.5rem;
-        }
-
-        input {
-        width: 50vw;
-        height: 5vh;
-        border: solid 1px blue;
-        }
-        button {
-        background-color: blue;
-        color: white;
-        border: none;
-        width: 8vw;
-        height: 5vh;
-        font-size: 0.5rem;
-        }
-
-        .sr-only {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          overflow: hidden;
-          white-space: nowrap;
-          border: 0;
-        }
-        .site {
-        background-color: white;
-        }
-        .site > nav {
-        background-color: grey;
-        }
-
-        .site thead th, .site tr td  {
-        border: solid 1px;
-        }
-        table {
-        font-size: 0.5rem;
-        border-collapse: collapse;
-        }
-        tr {
-        white-space: nowrap;
-        }
-        .center {
-        text-align: center;
-        overflow: hidden;
-        }
-        .left {
-        padding-left: 0.5rem;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css" th:href="@{/style.css}"/>
 </head>
 <body>
 <section class="site">
@@ -105,14 +15,14 @@
         <a style="color: white" href="/urls/">список URL</a>
     </nav>
 
-    <div style="margin: 0; padding: 0.2rem 2rem"
+    <div style="margin: 0; padding: 0.5rem 2rem"
          class="alert alert-success alert-dismissible fade show"
         th:hidden="${!urlIsChecked}">
-        Страница успешно проверена.
+        Страница успешно проверена
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
-    <div>
+    <div style="padding: 1rem 2rem ">
         <h4 th:text="${Url.name}">Сайт https://example.ru</h4>
         <table class="site">
             <tr>
@@ -139,7 +49,7 @@
                 <th class="center" style="width: 8vw">код ответа</th>
                 <th class="center" style="width: 18vw">title</th>
                 <th class="center" style="width: 18vw">h1</th>
-                <th class="center" style="width: 28vw">description</th>
+                <th class="center" style="width: 28vw"> description</th>
                 <th class="center" style="width: 14vw">дата проверки</th>
             </thead>
             <tr th:each="UrlCheck : ${ListOfUrlChecks}">
@@ -147,11 +57,16 @@
                 <td class="center" th:text="${UrlCheck.getStatusCode()}">200</td>
                 <td class="center" th:text="${UrlCheck.getTitle()}">titles text</td>
                 <td class="center" th:text="${UrlCheck.getH1()}">some H1</td>
-                <td class="center" th:text="${UrlCheck.getDescription()}">descriptions text</td>
+                <td class="center" th:text="${UrlCheck.getDescription()}">descriptions text frskjfbsrkjf fhjgrwufgsiruf
+                     uwfgieufgwifg weufgweiueg fjsrbfjsb rjbw4jfw4b jrbw4jfb ejfsjrbfj jf rjf r b jrbfsrbfkrsbf fbrfbribf
+                    rkfbrjfb krfbrfbirfbwjfv kjggug kjguggiu qqqqq</td>
                 <td class="center" th:text="${#dates.format(UrlCheck.getCreatedAt(), 'dd MMM yyyy HH:mm')}"> 01.08.2020</td>
             </tr>
         </table>
     </div>
 </section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
 </body>
 </html>

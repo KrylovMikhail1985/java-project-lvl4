@@ -33,18 +33,17 @@ public class Support {
         return result;
     }
 
-    public static LinkedList<String> getAlert(String urlStr, String firstUrl) {
+    public static LinkedList<String> getAlert(String urlStr, String firstUrl) throws MalformedURLException {
         LinkedList<String> list = new LinkedList<>();
         if (urlStr.equals("notValidFormat")) {
             list.add("alert alert-danger alert-dismissible fade show");
             list.add("Некорректный URL: " + firstUrl);
         } else if (urlStr.equals("alreadyExist")) {
             list.add("alert alert-warning alert-dismissible fade show");
-            list.add("Страница уже существует: " + firstUrl);
+            URL url = new URL(firstUrl);
+            String result = url.getProtocol() + "://" + url.getHost().toLowerCase();
+            list.add("Страница уже существует: " + result);
 
-        } else {
-            list.add("alert alert-success alert-dismissible fade show");
-            list.add("Страница успешно добавлена");
         }
         return list;
     }
@@ -57,7 +56,7 @@ public class Support {
     public static List<UrlCheck> getUrlChecksListForThisUrl(Url thisUrl) {
         return new QUrlCheck()
                 .url.equalTo(thisUrl)
-                .orderBy()
+                .orderBy().id.desc()
                 .findList();
     }
     public static Url getUrlById(Long id) {

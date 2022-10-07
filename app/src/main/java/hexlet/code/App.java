@@ -4,6 +4,7 @@ import hexlet.code.controllers.OneUrlController;
 import hexlet.code.controllers.RootController;
 import hexlet.code.controllers.URLsController;
 import io.javalin.Javalin;
+import io.javalin.http.staticfiles.Location;
 import io.javalin.plugin.rendering.template.JavalinThymeleaf;
 import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
 import org.thymeleaf.TemplateEngine;
@@ -26,16 +27,9 @@ public class App {
             if (!isProduction()) {
                 config.enableDevLogging(); // enable extensive development logging for http and websocket
             }
+
             config.enableWebjars();
-//            config.addStaticFiles(staticFiles -> {
-//                staticFiles.hostedPath = "/style.css";
-//                staticFiles.directory = "/style.css";
-//                staticFiles.location = Location.CLASSPATH;
-//                staticFiles.precompress = false;
-//                staticFiles.aliasCheck = null;
-////                staticFiles.headers = Map.of(...);
-//                staticFiles.skipFileFunction = req -> false;
-//            });
+            config.addStaticFiles("/static/css", Location.CLASSPATH);
             JavalinThymeleaf.configure(getTemplateEngine());
         });
         addRoutes(app);
@@ -45,7 +39,7 @@ public class App {
         return app;
     }
     private static int getPort() {
-        String port = System.getenv().getOrDefault("PORT", "8092");
+        String port = System.getenv().getOrDefault("PORT", "8090");
         return Integer.parseInt(port);
     }
     private static void addRoutes(Javalin app) {
