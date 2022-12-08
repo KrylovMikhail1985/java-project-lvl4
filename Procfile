@@ -1,1 +1,1 @@
-web: sh app/build/install/app/bin/app
+web: java -jar app/build/libs/app-1.0-SNAPSHOT.jar --server.port=$PORT
